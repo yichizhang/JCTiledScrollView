@@ -31,21 +31,19 @@
 @synthesize annotation = _annotation;
 @synthesize view = _view;
 
-+ (JCVisibleAnnotationTuple *)instanceWithAnnotation:(id<JCAnnotation>)annotation view:(JCAnnotationView *)view
++ (JCVisibleAnnotationTuple*)instanceWithAnnotation:(id<JCAnnotation>)annotation view:(JCAnnotationView*)view
 {
-  return [[self alloc] initWithAnnotation:annotation view:view];
+    return [[self alloc] initWithAnnotation:annotation view:view];
 }
 
-- (id)initWithAnnotation:(id<JCAnnotation>)annotation view:(JCAnnotationView *)view
+- (id)initWithAnnotation:(id<JCAnnotation>)annotation view:(JCAnnotationView*)view
 {
-  if ((self = [super init]))
-  {
-    self.annotation = annotation;
-    self.view = view;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.annotation = annotation;
+        self.view = view;
+    }
+    return self;
 }
-
 
 @end
 
@@ -53,26 +51,22 @@
 
 - (id)visibleAnnotationTupleForAnnotation:(id<JCAnnotation>)annotation
 {
-  for (JCVisibleAnnotationTuple *t in self)
-  {
-    if (t.annotation == annotation)
-    {
-      return t;
+    for (JCVisibleAnnotationTuple* t in self) {
+        if (t.annotation == annotation) {
+            return t;
+        }
     }
-  }
-  return nil;
+    return nil;
 }
 
-- (id)visibleAnnotationTupleForView:(JCAnnotationView *)view
+- (id)visibleAnnotationTupleForView:(JCAnnotationView*)view
 {
-  for (JCVisibleAnnotationTuple *t in self)
-  {
-    if (t.view == view)
-    {
-      return t;
+    for (JCVisibleAnnotationTuple* t in self) {
+        if (t.view == view) {
+            return t;
+        }
     }
-  }
-  return nil;
+    return nil;
 }
 
 @end
