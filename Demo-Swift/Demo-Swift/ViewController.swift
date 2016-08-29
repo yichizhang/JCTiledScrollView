@@ -28,13 +28,12 @@ class ViewController: UIViewController, JCTiledScrollViewDelegate, JCTileSource 
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
-		if(mode? == JCDemoType.PDF){
+		if(mode == JCDemoType.PDF){
 			scrollView = JCTiledPDFScrollView(frame: self.view.bounds, URL: NSBundle.mainBundle().URLForResource("Map", withExtension: "pdf"))
 		}else{
 			scrollView = JCTiledScrollView(frame: self.view.bounds, contentSize: SkippingGirlImageSize);
 		}
 		scrollView.tiledScrollViewDelegate = self
-		scrollView.zoomScale = 1.0
 		
 		scrollView.dataSource = self;
 		scrollView.tiledScrollViewDelegate = self;
@@ -56,6 +55,12 @@ class ViewController: UIViewController, JCTiledScrollViewDelegate, JCTileSource 
 		
 		addRandomAnnotations()
 	}
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollView.zoomScale = 1.01
+
+    }
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
@@ -64,7 +69,7 @@ class ViewController: UIViewController, JCTiledScrollViewDelegate, JCTileSource 
 	
 	func addRandomAnnotations() {
 		for index in 0...4 {
-			var a:JCAnnotation = DemoAnnotation();
+			let a:JCAnnotation = DemoAnnotation();
 			a.contentPosition = CGPointMake(
 				//This is ridiculous!! Hahaha
 				CGFloat(UInt(arc4random_uniform(UInt32(UInt(scrollView.tiledView.bounds.width))))),
@@ -82,7 +87,7 @@ class ViewController: UIViewController, JCTiledScrollViewDelegate, JCTileSource 
 	}
 	
 	func tiledScrollView(scrollView: JCTiledScrollView!, didReceiveSingleTap gestureRecognizer: UIGestureRecognizer!) {
-		var tapPoint:CGPoint = gestureRecognizer.locationInView(scrollView.tiledView)
+		let tapPoint:CGPoint = gestureRecognizer.locationInView(scrollView.tiledView)
 		
 		//Doesn't work!!!
 		//let infoString:String = String(format: "zoomScale: %0.2f, x: %0.0f y: %0.0f", scrollView.zoomScale, tapPoint.x, tapPoint.y)
@@ -108,7 +113,7 @@ class ViewController: UIViewController, JCTiledScrollViewDelegate, JCTileSource 
 	func tiledScrollView(scrollView: JCTiledScrollView!, imageForRow row: Int, column: Int, scale: Int) -> UIImage! {
 		
 		let fileName:String = "\(SkippingGirlImageName)_\(scale)x_\(row)_\(column).png";
-		println(fileName);
+		print(fileName);
 		return UIImage(named: fileName)
 		
 		/*
