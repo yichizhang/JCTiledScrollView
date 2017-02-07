@@ -32,7 +32,7 @@ public class DemoStyleKit : NSObject {
 		//// Text Drawing
 		let textRect = CGRectMake(0, 0, 25, 25)
 		var textTextContent = NSString(string: "PDF")
-		let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as NSMutableParagraphStyle
+		let textStyle = NSMutableParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
 		textStyle.alignment = NSTextAlignment.Center
 		
 		let textFontAttributes = [NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: UIFont.systemFontSize())!, NSForegroundColorAttributeName: UIColor.blackColor(), NSParagraphStyleAttributeName: textStyle]
@@ -47,7 +47,7 @@ public class DemoStyleKit : NSObject {
 	public class func drawImage() {
 		
 		//// Bezier 2 Drawing
-		var bezier2Path = UIBezierPath()
+		let bezier2Path = UIBezierPath()
 		bezier2Path.moveToPoint(CGPointMake(9, 6))
 		bezier2Path.addCurveToPoint(CGPointMake(8.54, 6.05), controlPoint1: CGPointMake(8.84, 6), controlPoint2: CGPointMake(8.68, 6.02))
 		bezier2Path.addCurveToPoint(CGPointMake(7, 8), controlPoint1: CGPointMake(7.65, 6.26), controlPoint2: CGPointMake(7, 7.06))
